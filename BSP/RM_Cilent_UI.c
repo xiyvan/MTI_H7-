@@ -337,23 +337,10 @@ int UI_ReFresh(int cnt,...)
    
    framepoint=(unsigned char *)&framehead;
    HAL_UART_Transmit(&huart1,framepoint,sizeof(framehead),0xffff);
-   /*
-   for(i=0;i<sizeof(framehead);i++)
-   {
-      UI_SendByte(*framepoint);
-      framepoint++;
-   }
-   */
+
    framepoint=(unsigned char *)&datahead;
    HAL_UART_Transmit(&huart1,framepoint,sizeof(datahead),0xffff);
-   /*
-   for(i=0;i<sizeof(datahead);i++)
-   {
-      UI_SendByte(*framepoint);
-      framepoint++;
-   }
-   */
-   
+
    for(i=0;i<cnt;i++)
    {
       imageData=va_arg(ap,Graph_Data);
@@ -361,24 +348,13 @@ int UI_ReFresh(int cnt,...)
       framepoint=(unsigned char *)&imageData;
       frametail=Get_CRC16_Check_Sum_UI(framepoint,sizeof(imageData),frametail);             //CRC16校验
       
-      HAL_UART_Transmit(&huart1,framepoint,sizeof(imageData),0xffff);
-      /*
-      for(n=0;n<sizeof(imageData);n++)
-      {
-         UI_SendByte(*framepoint);
-         framepoint++;             
-      }                                               //发送图片帧
-      */
+      HAL_UART_Transmit(&huart1,framepoint,sizeof(imageData),0xffff);   //发送图片帧
+
    }
    framepoint=(unsigned char *)&frametail;
+
    HAL_UART_Transmit(&huart1,framepoint,sizeof(frametail),0xffff);
-   /*
-   for(i=0;i<sizeof(frametail);i++)
-   {
-      UI_SendByte(*framepoint);
-      framepoint++;                                                  //发送CRC16校验值
-   }
-   */
+
    va_end(ap);
    
    UI_Seq++;                                                         //包序号+1

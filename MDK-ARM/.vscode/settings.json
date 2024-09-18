@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "rm_motor.h": "c"
+        "rm_motor.h": "c",
+        "rm_cilent_ui.h": "c"
     }
 }
