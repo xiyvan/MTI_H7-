@@ -22,12 +22,13 @@
 
 static void One_SolvePack(void);
 static void cp_solve_date(u8* date);
+static void cp_struct_data_init(void);
 
 
 
 FIFO_t CP_Fifo;            // fifo结构体指针
 CP_struct_t CP_main;               // cp解包主要
-u8 quque[1024] = {0};
+u8 quque[1024] = {0};       // FIFO 存储队列
 
 ///********************************************************** 裁判系统解包专用的变量定义  ***************************************************///
 
@@ -45,18 +46,19 @@ radar_mark_data_t radar_mark_data;              // 被标记进度
 
 
 
-
-
 ///**************************************************************  endl  *****************************************************************///
+
 
 
 void CP_task(void *pvParameters)
 {
-    CP_Fifo.max = 1024;
-    CP_Fifo.queue = quque;
-    CP_Fifo.get_num = 0;
-    CP_Fifo.num = 0;
-    CP_Fifo.add_num = 0;
+    // 手动初始化 FIFO
+    CP_Fifo.max = 1024;      // FIFO最大容量
+    CP_Fifo.queue = quque;   // FIFO的队列数组
+    CP_Fifo.get_num = 0;     // 提取序号
+    CP_Fifo.num = 0;         // 元素数量
+    CP_Fifo.add_num = 0;     // 添加序号
+    cp_struct_data_init();
     while (1)
     {       
         One_SolvePack();
@@ -73,26 +75,22 @@ void CP_task(void *pvParameters)
 
 
 
-
-
-
-
 /************************************
  * @brief 裁判系统单字节解包
  * @author 韩昂轩(Han Angxvan)
- * 
+ * @note 每一次解包都把 fifo 中所有元素提取完
  * **********************************
 */
 static void One_SolvePack(void)
 {
     u8 byte = 0;
-    u8 sof = CP_SOF_NUM;
-    CP_struct_t *p_obj = & CP_main;
+    u8 sof = CP_SOF_NUM;                        // 帧头
+    CP_struct_t *p_obj = & CP_main;             // 用来保存解包中必须用到的信息
 
-    while(CP_Fifo.num)
+    while(CP_Fifo.num)          // 当 FIFO 中元素数量不为 0 的时候就一直进行解包操作
     {
         byte = Fifo_Get(&CP_Fifo);               // 从fifo中取出一个字节
-        switch(p_obj->unpack_step)
+        switch(p_obj->unpack_step)      // 解包步骤
         {
             case CP_SOF:
             {
@@ -166,9 +164,8 @@ static void One_SolvePack(void)
                     //cp_solve_date(p_obj->protocol_packet);			// debug
                     if(verify_CRC16_check_sum(p_obj->protocol_packet,REF_HEADER_CRC_CMDID_LEN + p_obj->data_len))
                     {
-                        cp_solve_date(p_obj->protocol_packet);
+                        cp_solve_date(p_obj->protocol_packet);          // 单字节解包完毕后进行按照命令码进行 数据分类
                     }
-									
                 }
             }break;
 

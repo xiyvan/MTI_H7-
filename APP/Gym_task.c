@@ -263,6 +263,7 @@ static void Gym_cale(GYM_MSG_t* gym)
 /*******************************
  * @brief 云台信息更新
  * @param gym 云台信息结构体指针
+ * @note 兼顾给地盘发送控制信息的任务
 *******************************/
 static void Gym_msg_updata(GYM_MSG_t* gym)
 {
@@ -309,7 +310,7 @@ static void Gym_msg_updata(GYM_MSG_t* gym)
     SendDate_loading_speed(&remote_speed);
 
     ///************************ 云台相对中值角度  ***************************///
-		osDelay(1);
+	osDelay(1);
     remote_angle.angle = gym->motor_msg_6020[0].angle - GYM_YAW_MEDIAN_ANGLE;
     remote_angle.huan = get_chassis_power_buf();
     remote_angle.sof = 0xa5;

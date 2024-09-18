@@ -2,8 +2,8 @@ h7_test\imu_task.o: ..\APP\imu_task.c
 h7_test\imu_task.o: ..\APP\imu_task.h
 h7_test\imu_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os.h
 h7_test\imu_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
-h7_test\imu_task.o: D:\keil 5\ARM\ARMCC\Bin\..\include\stddef.h
-h7_test\imu_task.o: D:\keil 5\ARM\ARMCC\Bin\..\include\stdint.h
+h7_test\imu_task.o: C:\MDK\ARM\ARMCC\Bin\..\include\stddef.h
+h7_test\imu_task.o: C:\MDK\ARM\ARMCC\Bin\..\include\stdint.h
 h7_test\imu_task.o: ../Core/Inc/FreeRTOSConfig.h
 h7_test\imu_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 h7_test\imu_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
@@ -28,7 +28,7 @@ h7_test\imu_task.o: ../Drivers/CMSIS/Include/mpu_armv7.h
 h7_test\imu_task.o: ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h
 h7_test\imu_task.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h
 h7_test\imu_task.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
-h7_test\imu_task.o: D:\keil 5\ARM\ARMCC\Bin\..\include\math.h
+h7_test\imu_task.o: C:\MDK\ARM\ARMCC\Bin\..\include\math.h
 h7_test\imu_task.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h
 h7_test\imu_task.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h
 h7_test\imu_task.o: ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h

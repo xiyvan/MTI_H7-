@@ -1,13 +1,13 @@
-/*  
-    作者：韩昂轩
+/**************************************************************************************************
+ * 作者：韩昂轩
     内容：RM系列电机驱动CAN
     1.0.0       添加了基本的驱动    23.10.7
     1.0.1       修改了发送函数，把can序号作为形参传入，可以实现can1或者can2发送的选择   23.10.28
     
 
 
-    @note 需要 “Z_math” 与 HALL库的CAN 头文件以及文件
-*/
+    @note 需要 “Z_math” 与 HALL库的CAN 头文件以及文件    -------> H7版本
+****************************************************************************************************/
 
 
 #include "RM_motor.h"
@@ -56,7 +56,7 @@ void motor_msg_decode_6020(uint8_t ID,uint8_t* data,motor_return_msg_t* motor_ms
         motor_msg[ID-1].qvan ++;
     }
 
-    motor_msg[ID-1].all_angle = motor_msg[ID-1].angle*CAN_RM_CHANGE_CE + motor_msg[ID-1].qvan * 6.283185307179586476;       // 计算总的角度(弧度制角度)
+    motor_msg[ID-1].all_angle = motor_msg[ID-1].angle*CAN_RM_CHANGE_CE + motor_msg[ID-1].qvan * 6.283185307179586476f;       // 计算总的角度(弧度制角度)
     motor_msg[ID-1].last_angle = motor_msg[ID-1].angle;
 }
 

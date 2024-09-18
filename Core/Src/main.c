@@ -31,6 +31,7 @@
 /* USER CODE BEGIN Includes */
 #include "BSP_CAN.h"
 #include "REMOTE_task.h"
+#include "cp_usart.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -59,6 +60,7 @@ void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 extern uint8_t usart3_rx_data_buf[REMOTE_RECEVER_LEN+5];
+extern uint8_t uart6_rx_data_buf[USART6_DMA_RX_DATA_LEN];
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -114,8 +116,10 @@ int main(void)
   MX_TIM1_Init();
   MX_UART7_Init();
   /* USER CODE BEGIN 2 */
+  while(HAL_UARTEx_ReceiveToIdle_DMA(&huart1,uart6_rx_data_buf,USART6_DMA_RX_DATA_LEN) != HAL_OK);  // 串口1 DMA 开启接受（裁判系统）
   can_bsp_init();
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart5,usart3_rx_data_buf,REMOTE_RECEVER_LEN);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart5,usart3_rx_data_buf,REMOTE_RECEVER_LEN);    // 串口5 DMA 开始接受（遥控器）
+  
   /* USER CODE END 2 */
 
   /* Init scheduler */

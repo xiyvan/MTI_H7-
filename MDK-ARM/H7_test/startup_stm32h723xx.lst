@@ -1271,11 +1271,11 @@ ARM Macro Assembler    Page 20
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M7.fp.dp --apcs=
 interwork --depend=h7_test\startup_stm32h723xx.d -oh7_test\startup_stm32h723xx.
-o -I../Core/Inc -I.\RTE\_H7_test -I"D:\keil 5\ARM\CMSIS\5.9.0\CMSIS\Core\Includ
-e" -I"D:\keil 5\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Incl
-ude" --predefine="__UVISION_VERSION SETA 538" --predefine="_RTE_ SETA 1" --pred
-efine="STM32H723xx SETA 1" --predefine="_RTE_ SETA 1" --list=./h7_test/\startup
-_stm32h723xx.lst startup_stm32h723xx.s
+o -I../Core/Inc -I.\RTE\_H7_test -IC:\MDK_IN\ARM\CMSIS\6.1.0\CMSIS\Core\Include
+ -IC:\MDK_IN\Keil\STM32H7xx_DFP\3.1.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include
+ --predefine="__UVISION_VERSION SETA 540" --predefine="STM32H723xx SETA 1" --pr
+edefine="_RTE_ SETA 1" --list=./h7_test/\startup_stm32h723xx.lst startup_stm32h
+723xx.s
 
 
 

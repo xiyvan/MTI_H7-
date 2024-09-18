@@ -41,7 +41,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef * huart, uint16_t Size)
     {
         // 裁判系统的接受
         HAL_UARTEx_ReceiveToIdle_DMA(&huart1,uart6_rx_data_buf,USART6_DMA_RX_DATA_LEN);
-        CP_usart_task(Size,USART6_DMA_RX_DATA_LEN);
+        CP_usart_task(Size,uart6_rx_data_buf);
     }
 }
 

@@ -19,8 +19,8 @@ Remote_power_limted_t remote_power_limted;
 
 
 
-/// @brief CAN发送函数
-/// @param CAN can的序号 CAN1 OR CAN2
+/// @brief 串口
+/// @param len 发送信息的长度
 /// @param date 数据
 /// @param ID 发送ID
 void SendDate_TO_chassis(u8* date,u16 ID,u16 len)
